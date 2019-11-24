@@ -2,6 +2,7 @@ import { renderTripInfoTemplate } from './components/trip-info';
 import { renderMenuTemplate } from './components/menu';
 import { rendertSortingTemplate } from './components/sorting';
 import { renderFiltersTemplate } from './components/filters';
+import { renderAddEditEventTemplate } from './components/add-edit-event';
 import { renderEventListTemplate, renderEventTemplate } from './components/event';
 
 
