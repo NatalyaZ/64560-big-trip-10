@@ -419,8 +419,8 @@ render(tripInfoContainer, renderTripInfoTemplate, `afterbegin`);
 
 const tripControlsContainer = siteMainContainer.querySelector(`.trip-controls`);
 const headerSectionsTripControlsContainer = tripControlsContainer.querySelectorAll(`.visually-hidden`);
-render (headerSectionsTripControlsContainer[0], renderMenuTemplate, `afterend`);
-render (headerSectionsTripControlsContainer[1], renderFiltersTemplate, `afterend`);
+render(headerSectionsTripControlsContainer[0], renderMenuTemplate, `afterend`);
+render(headerSectionsTripControlsContainer[1], renderFiltersTemplate, `afterend`);
 
 const tripEventsContaner = siteMainContainer.querySelector(`.trip-events`);
 render(tripEventsContaner, rendertSortingTemplate, `beforeend`);
