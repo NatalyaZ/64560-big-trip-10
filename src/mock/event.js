@@ -133,8 +133,8 @@ const getRandomArrayItem = (array) => {
 
 const getRandomDates = () => {
   const dateStart = new Date();
-  const diffValue = Math.round(Math.random());
-  const dateEnd = dateStart.getDate() + diffValue;
+  const diffValue = getRandomIntegerNumber(0, 500000);
+  const dateEnd = new Date(dateStart.getTime() + diffValue);
 
   return [dateStart, dateEnd];
 };
