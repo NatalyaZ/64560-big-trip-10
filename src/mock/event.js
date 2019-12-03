@@ -131,16 +131,23 @@ const getRandomArrayItem = (array) => {
   return array[randomIndex];
 };
 
-const getRandomDates = () => {
-  const dateStart = new Date();
-  const diffValue = getRandomIntegerNumber(0, 500000);
-  const dateEnd = new Date(dateStart.getTime() + diffValue);
+const getRandomDate = () => {
+  const date = new Date();
+  const sign = getRandomIntegerNumber(0, 7);
 
-  return [dateStart, dateEnd];
+  return new Date(date.getYear(), date.getMonth(), date.getDate() + sign, getRandomIntegerNumber(0, 24));
+};
+
+const getRandomDates = (date) => {
+  const sign = getRandomIntegerNumber(0, 9);
+  const diffValue = sign * 600000;
+  const dateEnd = new Date(date.getTime() + diffValue);
+
+  return [date, dateEnd];
 };
 
 const getRandomPhotos = () => {
-  const countPhotos = Math.random() * 10;
+  const countPhotos = Math.floor(Math.random() * 10);
 
   return new Array(countPhotos)
     .fill(``)
@@ -149,39 +156,39 @@ const getRandomPhotos = () => {
 
 const getRandomDestination = () => {
   const destinationArray = DESTINATION.split('. ');
+  const temp = new Array(getRandomIntegerNumber(0, 3));
+  const tempLength = temp.length;
+  for (let i = 0; i < tempLength; i++) {
+    temp[i] = (getRandomArrayItem(destinationArray));
+  }
 
-  return getRandomArrayItem(destinationArray)
-    .slice(0, 3)
-    .join(`. `);
+  return temp.join(`. `);
 }
 
 const getSignDirection = (typeEvent) => {
   switch (typeEvent) {
-    case `flight`:
-      return `Sightseeing at ${getRandomArrayItem(SITIES)}`;
-    case `taxi`:
-      return `Taxi to ${getRandomArrayItem(TAXI)}`;
-    case `drive`:
-      return `Drive to ${getRandomArrayItem(SITIES)}`;
-    case `check-in`:
-      return `Check into ${getRandomArrayItem(HOTELS_TYPE)}`;
+    case 'fligh':
+      return `${getRandomArrayItem(SITIES)}`;
+    case 'taxi':
+      return `${getRandomArrayItem(TAXI)}`;
+    case 'drive':
+      return `${getRandomArrayItem(SITIES)}`;
+    case 'check-in':
+      return `${getRandomArrayItem(HOTELS_TYPE)}`;
     default:
-      return ``;
+      return `${getRandomArrayItem(SITIES)}`;
   }
 }
 
 const getTotalPrice = (offers) => {
-  return `${offers.reduce((o) => sum + Number(o.price), 0)}`;
+  return `${offers.reduce((sum, o) => sum + Number(o.price), 0)}`;
 }
 
 const generateEvent = () => {
-  const dates = getRandomDates();
+  const dates = getRandomDates(getRandomDate());
   const typeEvent = getRandomArrayItem(TYPE_EVENT);
-  const direction = getSignDirection(TYPE_EVENT);
-  const offers = OFFERS.filter((o) => o.typeEvent === typeEvent)
-    .map((i) => {
-      return Array.apply(i, {price: `${i.price}${CURRENCY}`});
-    });
+  const direction = getSignDirection(typeEvent);
+  const offers = OFFERS.filter((o) => o.typeEvent === typeEvent);
   const totalPrice = `${getTotalPrice(offers)}${CURRENCY}`;
 
   return {
