@@ -1,4 +1,4 @@
-import {MONTHS} from './const';
+import {MONTHS, DEFAULT_REDIX} from './const';
 
 
 export const formatDate = (date) => {
@@ -27,9 +27,9 @@ export const formatTime = (time) => {
 export const getInterval = (dateStart, dateEnd) => {
   const interval = dateEnd.getTime() - dateStart.getTime();
 
-  const days = parseInt(interval / (1000 * 60 * 60 * 24));
-  const hours = parseInt((interval / (1000 * 60 * 60)) % 24);
-  const minutes = parseInt((interval / (1000 * 60)) % 60);
+  const days = parseInt((interval / (1000 * 60 * 60 * 24)), DEFAULT_REDIX);
+  const hours = parseInt(((interval / (1000 * 60 * 60)) % 24), DEFAULT_REDIX);
+  const minutes = parseInt(((interval / (1000 * 60)) % 60), DEFAULT_REDIX);
 
   const daysText = days ? `${days}D` : ``;
   const hoursText = hours ? `${hours}H` : ``;
@@ -40,7 +40,7 @@ export const getInterval = (dateStart, dateEnd) => {
 
 export const getShortDate = (date) => {
   return `${MONTHS[date.getMonth()]} ${date.getDate()}`;
-}
+};
 
 export const getGroupedEvents = (events) => {
   return events.reduce((acc, event) => {
@@ -58,20 +58,20 @@ export const getGroupedEvents = (events) => {
       acc.push([event]);
     }
     return acc;
-  }, [])
+  }, []);
 };
 
 export const getSignDirection = (typeEvent) => {
   switch (typeEvent) {
-    case 'fligh':
+    case `fligh`:
       return `Sightseeing at`;
-    case 'taxi':
+    case `taxi`:
       return `Taxi to`;
-    case 'drive':
+    case `drive`:
       return `Drive to`;
-    case 'check-in':
+    case `check-in`:
       return `Check into`;
     default:
       return ``;
   }
-}
+};

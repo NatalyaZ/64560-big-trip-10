@@ -41,3 +41,5 @@ export const MENU = [
     isActive: false
   }
 ];
+
+export const DEFAULT_REDIX = 2;

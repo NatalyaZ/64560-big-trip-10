@@ -152,10 +152,10 @@ const getRandomPhotos = () => {
   return new Array(countPhotos)
     .fill(``)
     .map(() => `http://picsum.photos/300/150?r=${Math.random()}`);
-}
+};
 
 const getRandomDestination = () => {
-  const destinationArray = DESTINATION.split('. ');
+  const destinationArray = DESTINATION.split(`. `);
   const temp = new Array(getRandomIntegerNumber(0, 3));
   const tempLength = temp.length;
   for (let i = 0; i < tempLength; i++) {
@@ -163,26 +163,26 @@ const getRandomDestination = () => {
   }
 
   return temp.join(`. `);
-}
+};
 
 const getSignDirection = (typeEvent) => {
   switch (typeEvent) {
-    case 'fligh':
+    case `fligh`:
       return `${getRandomArrayItem(SITIES)}`;
-    case 'taxi':
+    case `taxi`:
       return `${getRandomArrayItem(TAXI)}`;
-    case 'drive':
+    case `drive`:
       return `${getRandomArrayItem(SITIES)}`;
-    case 'check-in':
+    case `check-in`:
       return `${getRandomArrayItem(HOTELS_TYPE)}`;
     default:
       return `${getRandomArrayItem(SITIES)}`;
   }
-}
+};
 
 const getTotalPrice = (offers) => {
   return `${offers.reduce((sum, o) => sum + Number(o.price), 0)}`;
-}
+};
 
 const generateEvent = () => {
   const dates = getRandomDates(getRandomDate());
@@ -200,8 +200,8 @@ const generateEvent = () => {
     dateFinishEvent: dates[1],
     destination: getRandomDestination(),
     photos: getRandomPhotos()
-  }
-}
+  };
+};
 
 const generateEvents = (count) => {
   return new Array(count)

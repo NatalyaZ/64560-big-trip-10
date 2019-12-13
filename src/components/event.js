@@ -27,7 +27,7 @@ const createOffersMarkup = (offers) => {
 
 const createEventMarkup = (event) => {
   const {
-    typeEvent, direction, totalPrice, offers, dateStartEvent, dateFinishEvent, destination, photos
+    typeEvent, direction, totalPrice, offers, dateStartEvent, dateFinishEvent
   } = event;
   const timeStartEvent = formatTime(dateStartEvent);
   const timeEndEvent = formatTime(dateFinishEvent);
@@ -86,11 +86,11 @@ const createDayMarkup = (event, count) => {
 
 export const renderEventListTemplate = (events) => {
   const groupedEvents = getGroupedEvents(events.sort((prev, next) => {
-    return (new Date(prev.dateStartEvent).getDate() - new Date(next.dateStartEvent).getDate())
+    return (new Date(prev.dateStartEvent).getDate() - new Date(next.dateStartEvent).getDate());
   }));
   return (
     `<ul class="trip-days">
-      ${groupedEvents.map((events, index) => createDayMarkup(events, index + 1)).join(`\n`)}
+      ${groupedEvents.map((day, index) => createDayMarkup(day, index + 1)).join(`\n`)}
     </ul>`
   );
 };
