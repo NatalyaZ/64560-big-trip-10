@@ -29,3 +29,15 @@ export const MONTHS = [
   `Nov`,
   `Dec`
 ];
+
+export const MENU = [
+  {
+    title: `Table`,
+    link: `#`,
+    isActive: true
+  }, {
+    title: `Stats`,
+    link: `#`,
+    isActive: false
+  }
+];
