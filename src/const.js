@@ -30,16 +30,4 @@ export const MONTHS = [
   `Dec`
 ];
 
-export const MENU = [
-  {
-    title: `Table`,
-    link: `#`,
-    isActive: true
-  }, {
-    title: `Stats`,
-    link: `#`,
-    isActive: false
-  }
-];
-
 export const DEFAULT_REDIX = 2;

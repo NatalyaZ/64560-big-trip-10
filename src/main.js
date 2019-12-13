@@ -5,8 +5,8 @@ import {renderFiltersTemplate} from './components/filters';
 import {renderAddEditEventTemplate} from './components/add-edit-event';
 import {renderEventListTemplate} from './components/event';
 import {generateEvents} from './mock/event';
-import {MENU} from './const';
 import {generateFilters} from './mock/filters';
+import {generateMenuItems} from './mock/menu';
 
 
 const SHOW_EVENTS_COUNT = 10;
@@ -21,7 +21,7 @@ render(tripInfoContainer, renderTripInfoTemplate(), `afterbegin`);
 
 const tripControlsContainer = siteMainContainer.querySelector(`.trip-controls`);
 const headerSectionsTripControlsContainer = tripControlsContainer.querySelectorAll(`.visually-hidden`);
-render(headerSectionsTripControlsContainer[0], renderMenuTemplate(MENU), `afterend`);
+render(headerSectionsTripControlsContainer[0], renderMenuTemplate(generateMenuItems()), `afterend`);
 render(headerSectionsTripControlsContainer[1], renderFiltersTemplate(generateFilters()), `afterend`);
 
 const tripEventsContaner = siteMainContainer.querySelector(`.trip-events`);
