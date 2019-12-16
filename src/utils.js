@@ -61,6 +61,12 @@ export const getGroupedEvents = (events) => {
   }, []);
 };
 
+export const getSortedEventsByDate = (events) => {
+  return events.sort((prev, next) => {
+    return (new Date(prev.dateStartEvent).getDate() - new Date(next.dateStartEvent).getDate());
+  });
+};
+
 export const getSignDirection = (typeEvent) => {
   switch (typeEvent) {
     case `fligh`:
@@ -74,4 +80,37 @@ export const getSignDirection = (typeEvent) => {
     default:
       return ``;
   }
+};
+
+export const getTripInfo = (events) => {
+  const eventCount = events.length;
+
+  let title = ``;
+  let dates = ``;
+
+  if (eventCount === 0) {
+    return {
+      title,
+      dates
+    };
+  }
+  
+  title = `${events[0].direction} &mdash; ${eventCount > 2 ? `... &mdash;` : ``} ${events[eventCount-1].direction}`;
+  dates = `${getEventsDates(
+    new Date(events[0].dateStartEvent),
+    new Date(events[eventCount-1].dateFinishEvent)
+  )}`;
+  
+  return {
+    title,
+    dates
+  };
+};
+
+const getEventsDates = (dateStart, dateEnd) => {
+  const beginer = `${MONTHS[dateStart.getMonth()]} ${dateStart.getDate()}`;
+  const separate = `&nbsp;&mdash;&nbsp;`;
+  const finish = dateStart.getMonth() === dateEnd.getMonth() ?
+    dateEnd.getDate() : `${MONTHS[dateEnd.getMonth()]} ${dateEnd.getDate()}`
+  return `${beginer}${separate}${finish}`;
 };

@@ -180,9 +180,6 @@ const getSignDirection = (typeEvent) => {
   }
 };
 
-const getTotalPrice = (offers) => {
-  return `${offers.reduce((sum, o) => sum + Number(o.price), 0)}`;
-};
 
 const generateEvent = () => {
   const dates = getRandomDates(getRandomDate());

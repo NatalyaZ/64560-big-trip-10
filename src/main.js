@@ -15,9 +15,11 @@ const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
 
+const events = generateEvents(SHOW_EVENTS_COUNT);
+
 const siteMainContainer = document.querySelector(`.page-body`);
 const tripInfoContainer = siteMainContainer.querySelector(`.trip-info`);
-render(tripInfoContainer, renderTripInfoTemplate(), `afterbegin`);
+render(tripInfoContainer, renderTripInfoTemplate(events), `afterbegin`);
 
 const tripControlsContainer = siteMainContainer.querySelector(`.trip-controls`);
 const headerSectionsTripControlsContainer = tripControlsContainer.querySelectorAll(`.visually-hidden`);
@@ -28,5 +30,4 @@ const tripEventsContaner = siteMainContainer.querySelector(`.trip-events`);
 render(tripEventsContaner, rendertSortingTemplate(), `beforeend`);
 render(tripEventsContaner, renderAddEditEventTemplate(), `beforeend`);
 
-const events = generateEvents(SHOW_EVENTS_COUNT);
 render(tripEventsContaner, renderEventListTemplate(events), `beforeend`);
