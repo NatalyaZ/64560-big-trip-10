@@ -9,32 +9,34 @@ export const rendertSortingTemplate = () => {
   return (
     `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
       ${SORT.map((item) => {
-        switch (item) {
-          case `day`:
-          case `offers`:
-            return (
-              `<span class="trip-sort__item  trip-sort__item--${item}">${item}</span>`
-            );
-          case `event`:
-            return (
-              `<div class="trip-sort__item  trip-sort__item--${item}">
-                <input id="sort-${item}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${item}" checked>
-                <label class="trip-sort__btn" for="sort-${item}">${item}</label>
-              </div>`
-            );
-          case `time`:
-          case `price`:
-            return (
-              `<div class="trip-sort__item  trip-sort__item--${item}">
-                <input id="sort-${item}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${item}">
-                <label class="trip-sort__btn" for="sort-${item}">
-                  ${item}
-                  ${sortDirectionIcon}
-                </label>
-              </div>`
-            );
-        }
-      }).join(`\n`)}
+      switch (item) {
+        case `day`:
+        case `offers`:
+          return (
+            `<span class="trip-sort__item  trip-sort__item--${item}">${item}</span>`
+          );
+        case `event`:
+          return (
+            `<div class="trip-sort__item  trip-sort__item--${item}">
+              <input id="sort-${item}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${item}" checked>
+              <label class="trip-sort__btn" for="sort-${item}">${item}</label>
+            </div>`
+          );
+        case `time`:
+        case `price`:
+          return (
+            `<div class="trip-sort__item  trip-sort__item--${item}">
+              <input id="sort-${item}" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-${item}">
+              <label class="trip-sort__btn" for="sort-${item}">
+                ${item}
+                ${sortDirectionIcon}
+              </label>
+            </div>`
+          );
+        default:
+          return ``;
+      }
+    }).join(`\n`)}
     </form>`
   );
 };
