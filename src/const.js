@@ -31,3 +31,11 @@ export const MONTHS = [
 ];
 
 export const DEFAULT_REDIX = 2;
+
+export const SORT = [
+  `day`,
+  `event`,
+  `time`,
+  `price`,
+  `offers`
+];
