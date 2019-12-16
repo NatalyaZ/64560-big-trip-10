@@ -1,4 +1,5 @@
 import {renderTripInfoTemplate} from './components/trip-info';
+import {renderTripTotalPriceTemplate} from './components/trip-total-price';
 import {renderMenuTemplate} from './components/menu';
 import {rendertSortingTemplate} from './components/sorting';
 import {renderFiltersTemplate} from './components/filters';
@@ -11,7 +12,7 @@ import {generateMenuItems} from './mock/menu';
 
 const SHOW_EVENTS_COUNT = 10;
 
-const render = (container, template, place) => {
+const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
@@ -19,7 +20,8 @@ const events = generateEvents(SHOW_EVENTS_COUNT);
 
 const siteMainContainer = document.querySelector(`.page-body`);
 const tripInfoContainer = siteMainContainer.querySelector(`.trip-info`);
-render(tripInfoContainer, renderTripInfoTemplate(events), `afterbegin`);
+render(tripInfoContainer, renderTripInfoTemplate(events));
+render(tripInfoContainer, renderTripTotalPriceTemplate(events));
 
 const tripControlsContainer = siteMainContainer.querySelector(`.trip-controls`);
 const headerSectionsTripControlsContainer = tripControlsContainer.querySelectorAll(`.visually-hidden`);
@@ -27,7 +29,7 @@ render(headerSectionsTripControlsContainer[0], renderMenuTemplate(generateMenuIt
 render(headerSectionsTripControlsContainer[1], renderFiltersTemplate(generateFilters()), `afterend`);
 
 const tripEventsContaner = siteMainContainer.querySelector(`.trip-events`);
-render(tripEventsContaner, rendertSortingTemplate(), `beforeend`);
-render(tripEventsContaner, renderAddEditEventTemplate(), `beforeend`);
+render(tripEventsContaner, rendertSortingTemplate());
+render(tripEventsContaner, renderAddEditEventTemplate());
 
-render(tripEventsContaner, renderEventListTemplate(events), `beforeend`);
+render(tripEventsContaner, renderEventListTemplate(events));

@@ -1,4 +1,5 @@
-import {TYPE_EVENT, CURRENCY} from '../const';
+import {TYPE_EVENT} from '../const';
+import {getEventTotalPrice} from '../utils';
 
 
 const SITIES = [`Amsterdam`, `Geneva`, `Chamonix`, `Saint Petersburg`];
@@ -180,17 +181,18 @@ const getSignDirection = (typeEvent) => {
   }
 };
 
-
 const generateEvent = () => {
   const dates = getRandomDates(getRandomDate());
   const typeEvent = getRandomArrayItem(TYPE_EVENT);
   const direction = getSignDirection(typeEvent);
   const offers = OFFERS.filter((o) => o.typeEvent === typeEvent);
-  const totalPrice = `${getTotalPrice(offers)}${CURRENCY}`;
+  const price = getRandomIntegerNumber(5, 100);
+  const totalPrice = `${Number(getEventTotalPrice(offers)) + Number(price)}`;
 
   return {
     typeEvent,
     direction,
+    price,
     totalPrice,
     offers,
     dateStartEvent: dates[0],

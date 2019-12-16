@@ -94,13 +94,13 @@ export const getTripInfo = (events) => {
       dates
     };
   }
-  
-  title = `${events[0].direction} &mdash; ${eventCount > 2 ? `... &mdash;` : ``} ${events[eventCount-1].direction}`;
+
+  title = `${events[0].direction} &mdash;${eventCount > 2 ? ` ... &mdash;` : ``} ${events[eventCount - 1].direction}`;
   dates = `${getEventsDates(
-    new Date(events[0].dateStartEvent),
-    new Date(events[eventCount-1].dateFinishEvent)
+      new Date(events[0].dateStartEvent),
+      new Date(events[eventCount - 1].dateFinishEvent)
   )}`;
-  
+
   return {
     title,
     dates
@@ -111,6 +111,14 @@ const getEventsDates = (dateStart, dateEnd) => {
   const beginer = `${MONTHS[dateStart.getMonth()]} ${dateStart.getDate()}`;
   const separate = `&nbsp;&mdash;&nbsp;`;
   const finish = dateStart.getMonth() === dateEnd.getMonth() ?
-    dateEnd.getDate() : `${MONTHS[dateEnd.getMonth()]} ${dateEnd.getDate()}`
+    dateEnd.getDate() : `${MONTHS[dateEnd.getMonth()]} ${dateEnd.getDate()}`;
   return `${beginer}${separate}${finish}`;
+};
+
+export const getEventTotalPrice = (offers) => {
+  return `${offers.reduce((sum, o) => sum + Number(o.price), 0)}`;
+};
+
+export const getTripTotalPrice = (events) => {
+  return events.reduce((total, event) => total + Number(getEventTotalPrice(event.offers)) + Number(event.price), 0);
 };

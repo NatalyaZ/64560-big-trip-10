@@ -1,6 +1,6 @@
 import {
   getShortDate, formatTime, getInterval, getGroupedEvents, formateDateInMarkup,
-  getSignDirection
+  getSignDirection, getSortedEventsByDate
 } from '../utils';
 import {CURRENCY} from '../const';
 
@@ -85,9 +85,7 @@ const createDayMarkup = (event, count) => {
 };
 
 export const renderEventListTemplate = (events) => {
-  const groupedEvents = getGroupedEvents(events.sort((prev, next) => {
-    return (new Date(prev.dateStartEvent).getDate() - new Date(next.dateStartEvent).getDate());
-  }));
+  const groupedEvents = getGroupedEvents(getSortedEventsByDate(events));
   return (
     `<ul class="trip-days">
       ${groupedEvents.map((day, index) => createDayMarkup(day, index + 1)).join(`\n`)}
